@@ -2,7 +2,7 @@
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
-var mongodb  = process.env.MONGO_DB || 'mongodb://tinytask:12nils34@ds013559.mlab.com:13559/heroku_fpc86mnx';
+var mongodb  = process.env.MONGO_DB || "mongodb://localhost/test";
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
