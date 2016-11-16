@@ -2,6 +2,7 @@
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
+var mongodb  = process.env.MONGO_DB || "mongodb://localhost/test"
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -14,7 +15,7 @@ var session      = require('express-session');
 // db config
 var databaseConfig = require('./config/database.js');
 mongoose.Promise = global.Promise;
-mongoose.connect(databaseConfig.url);
+mongoose.connect(mongodb);
 
 require('./config/passport')(passport);
 
