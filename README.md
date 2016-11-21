@@ -6,7 +6,7 @@
 Die Rest Dokumentation ist unter [https://kswe-2016-17.github.io/tinytask-backend-rest/](https://kswe-2016-17.github.io/tinytask-backend-rest/) zu erreichen
 
 # Installation
-Befor Sie den Server starten, stellen Sie sicher, dass die Datenbank eingerichtet ist.
+Bevor Sie den Server starten, stellen Sie sicher, dass die Datenbank eingerichtet ist.
 ```
 git clone https://github.com/KSWE-2016-17/tinytask-backend-rest.git
 cd tinytask-backend-rest
