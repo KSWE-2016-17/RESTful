@@ -1,51 +1,191 @@
 FORMAT: 1A
-HOST: http://localhost
+HOST: http://localhost:8080
+
+# Data Structures
+## UserObject (object)
++ _id: auth0|askdlf123012naf (string, required)
++ displayName: Foo (string, required)
++ picture: http://picture.me/foo42 (string)
++ address: Adresse 42, Berlin (string)
++ ratings: http://localhost/users/:id/ratings
+
+## TaskObject (object)
++ _id: 1 (string, required)
++ createdBy: sd (UserObject)
++ assignedTo: sd (UserObject)
++ name: String
++ description: String
++ payment: Number
++ position: Verweis!!!
++ starts: {type: Date, default: Date.now}
++ category: String
++ applications: Verweis!!!
+
+## PositionObject (object)
++ _id: 1 (string, required)
+
+## ApplicationObject (object)
++ _id: 1 (string, required)
+
+## CreateTaskObject (object)
++ name: String (required)
++ description: String (required)
++ payment: Number
++ position: Number
++ starts: {type: Date, default: Date.now}
+
 
 # TinyTask Rest-Api Dokumentation
 
 # Group Authentifizierung
-Bei jeder Anfrage muss ein gültiger Token, im Header mitgeschickt werden.
+Bei jeder Anfrage muss ein gültiger Token, im Header, mitgeschickt werden.
+**Die Authentifizierung gilt für alle Anfragen**, nicht nur für POST.
 
-### Bearer
+## Authentifizierung [POST /]
 + Request
     + Headers
-        + Authorization (Token)
+        Authorization (Token)
 
-+ Response 401 (plain/text)
-	"Invalid Token"
-	
++ Response 401 (text/plain)
+
+      Invalid Token
+
+
+
+
+
+
+
+
+
+
+# Group Benutzer
+
+
+
+
+
+# Benutzer [/users]
+
+### alle anzeigen [GET]
+Gibt die Liste aller Benutzer
+
++ Response 200 (application/json)
+
+   {
+      {
+        "_id": "auth0|askdlf123012naf",
+        "displayName": "Foo",
+        "picture": "http://picture.me/foo42",
+        "address": "Adresse 42, Berlin",
+        "ratings": "http://localhost/users/:id/ratings"
+      },
+      {
+        "_id": "auth0|askdlf123012naf",
+        "displayName": "Foo",
+        "picture": "http://picture.me/foo42",
+        "address": "Adresse 42, Berlin",
+        "ratings": "http://localhost/users/:id/ratings"
+      }
+   }
+
+
+
+
+
+
+
+## Benutzer [/users/{user_id}]
++ Parameters
+  + user_id (string) - Id vom Benutzer
+
+
+### anzeigen [GET]
++ Response 200 (application/json)
+  + Attributes (UserObject)
+
+### löschen [DELETE]
++ Response 200 (application/json)
+  {
+    message: "erfolgreich gelöscht"
+  }
+
++ Response 204 (text/plain)
+
+
+
+
+
+
+
+
+
+
+
+## Bewertung [/users/{user_id}/rating]
+  Benuter bewerten
+
+  + Parameters
+      + user_id (number) - Id vom Benutzer
+
+### anzeigen [GET]
+  + Response 200 (application/json)
+
+          {
+              "foo": "bar"
+          }
+
+### erstellen [POST]
++ Request (application/json)
+
+          {
+              "rating": "1"
+          }
+
+
++ Response 200 (application/json)
+
+          {
+              "foo": "bar"
+          }
+
+
+
+
+
+
+
 
 # Group Tasks
 
 # Tasks [/tasks]
 
-## Zeigt alle Tasks [GET]
-
+## alle anzeigen [GET]
 + Response 200 (application/json)
+
         {
             "foo": "bar"
         }
 
-## Erstelle neuen Task [POST]
+## erstellen [POST]
 + Request (application/json)
-
-        {
-            "foo": "bar"
-        }
+  + Attributes (CreateTaskObject)
 
 + Response 200 (application/json)
 
         {
-            "foo": "bar"
+            "task_id": "42"
         }
 
 
-## Ein Task [/tasks/{task_id}]
 
+
+
+## Task [/tasks/{task_id}]
 + Parameters
     + task_id (number) - Id vom Task
 
-### Gibt Details zum Task zurück [GET]
+### anzeigen [GET]
 
 + Response 200 (application/json)
 
@@ -53,7 +193,15 @@ Bei jeder Anfrage muss ein gültiger Token, im Header mitgeschickt werden.
             "foo": "bar"
         }
 
-### Delete [DELETE]
+### updaten [PUT]
+
++ Response 200 (application/json)
+
+                {
+                    "foo": "bar"
+                }
+
+### löschen [DELETE]
 
 + Response 204
 
@@ -65,18 +213,17 @@ Bei jeder Anfrage muss ein gültiger Token, im Header mitgeschickt werden.
 
 
 ## Task [/tasks/{task_id}/position]
-
 + Parameters
     + task_id (number) - Id vom Task
 
-### Position des Task [GET]
+### Position anzeigen [GET]
 Es wird der Längen- und Breitengrad des Tasks zurück gegeben.
 
 + Response 200 (application/json)
 
         {
-            "lng": "51.46135351",
-			"lat": "52.46546543"
+              "lng": "51.46135351",
+			        "lat": "52.46546543"
         }
 
 
@@ -84,19 +231,32 @@ Es wird der Längen- und Breitengrad des Tasks zurück gegeben.
 
 
 
-
 ## Task [/tasks/{task_id}/applications]
-
 + Parameters
     + task_id (number) - Id vom Task
 
-### Bewerber eines Tasks [GET]
+
+### Bewerber anzeigen [GET]
 Gibt die Bewerber eines Tasks zurück.
 
 + Response 200 (application/json)
-
         {
-            "bewerber", []
+            "bewerber":{
+                {
+                  "_id": "auth0|askdlf123012naf",
+                  "displayName": "Foo",
+                  "picture": "http://picture.me/foo42",
+                  "address": "Adresse 42, Berlin",
+                  "ratings": "http://localhost/users/:id/ratings"
+                },
+                {
+                  "_id": "auth0|askdlf123012naf",
+                  "displayName": "Foo",
+                  "picture": "http://picture.me/foo42",
+                  "address": "Adresse 42, Berlin",
+                  "ratings": "http://localhost/users/:id/ratings"
+                }
+            }
         }
 
 
@@ -105,97 +265,56 @@ Gibt die Bewerber eines Tasks zurück.
 
 
 ## Task [/tasks{?radius,startzeit}]
-
 + Parameters
     + radius (number) - Radius um die Tasks einzugrenzen
-	+ startzeit (number) - Zeit wann der Task begonnen hat
+    + startzeit (number) - Zeit wann der Task begonnen hat
 
-### Tasks eingrenzen [GET]
+### Suche anzeigen [GET]
 Gibt die eingegrenzten Tasks wieder.
 
 + Response 200 (application/json)
-
-        {
-            "tasks", [],
-			"results", 0
-        }
-
-
-
-
-# Group Benutzer
-
-
-# Benutzer [/users]
-
-### Gibt die Liste aller Benutzer [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-### Fügt einen neuen Benutzer hinzu [POST]
-
-+ Request (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-+ Response 200 (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-
-
-
-## Benutzer bewerten [/users/{user_id}/rating]
-Benuter bewerten
-
-+ Parameters
-    + user_id (number) - Id vom Benutzer
-
-### Gibt die Bewertung [GET]
-+ Response 200 (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-### Schickt eine Bewertung [POST]
-+ Request (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-
-+ Response 200 (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-
-## Gibt bestimmten Benutzer wieder [/users/{user_id}]
-
-+ Parameters
-    + user_id (number) - Id vom Benutzer
-
-### Gibt bestimmten Benutzer wieder [GET]
-+ Response 200 (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-### Löscht angegeben benutzer [DELETE]
-+ Response 204
-
-
-
-
+{
+   "results":2,
+   "tasks":{
+      "1":{
+         "\_id":1,
+         "createdBy":"582c5174e7828529013defd7",
+         "assignedTo":"582c5174a954ee04b3feaebe",
+         "name":"Lorem ipsum",
+         "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+         "payment":4.65,
+         "category":"fluppie",
+         "applications":[
+            {
+               "user":"582c517435b9e8de108dea20",
+               "comment":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+            }
+         ],
+         "starts":"1996-02-11T14:16:25.000Z",
+         "position":{
+            "latitude":46.2515,
+            "longitude":0.0666
+         }
+      },
+      "2":{
+         "\_id":2,
+         "createdBy":"582c5174a9022e332cb3ba47",
+         "assignedTo":"582c5174f2989db743a98dd0",
+         "name":"Lorem ipsum",
+         "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+         "payment":4.29,
+         "category":"wuppie",
+         "applications":[
+            {
+               "user":"582c5174a954ee04b3feaebe",
+               "comment":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+            }
+         ],
+         "starts":"1977-03-19T15:15:24.000Z",
+         "position":{
+            "latitude":33.9343,
+            "longitude":26.8059
+         }
+      }
+   }
+}
