@@ -3,36 +3,25 @@ HOST: http://localhost
 
 # TinyTask Rest-Api Dokumentation
 
-# Group Login
+# Group Authentifizierung
+Bei jeder Anfrage muss ein gültiger Token, im Header mitgeschickt werden.
 
-# Login [/login]
+### Bearer
++ Request
+    + Headers
+        + Authorization (Token)
 
-## Login [POST]
-+ Request (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-+ Response 200 (application/json)
-
-        {
-            "foo": "bar"
-        }
-
-
-
-
-
-
++ Response 401 (plain/text)
+	"Invalid Token"
+	
 
 # Group Tasks
 
 # Tasks [/tasks]
 
 ## Zeigt alle Tasks [GET]
-+ Response 200 (application/json)
 
++ Response 200 (application/json)
         {
             "foo": "bar"
         }
