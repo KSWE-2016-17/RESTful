@@ -10,10 +10,6 @@ var port        = process.env.PORT || 8080,
     jwt         = require('express-jwt'),
     routes      = require('./app/routes');
 
-// database
-mongoose.Promise = global.Promise;
-mongoose.connect(mongodb);
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,11 +19,11 @@ app.set('json spaces', 2);
 
 // authentication
 app.use(jwt({
-    audience:   config.auth.clientID,
-    issuer:     'https://' + config.auth.domain + '/',
-    secret:     new Buffer(config.auth.clientSecret, 'base64')
-}));
-app.use(require("./app/middlewares/authusercheck"));
+ audience:   config.auth.clientID,
+ issuer:     'https://' + config.auth.domain + '/',
+ secret:     new Buffer(config.auth.clientSecret, 'base64')
+ }));
+ app.use(require("./app/middlewares/authusercheck"));
 
 // routes
 app.use('/', routes);
@@ -35,5 +31,14 @@ app.use('/', routes);
 // error handling
 app.use(require("./app/middlewares/errors"));
 
-app.listen(port);
-console.log('listen to port ' + port);
+// db connect and create server
+mongoose.Promise = global.Promise;
+mongoose.connect(mongodb, function (err) {
+    if (err) {
+        console.log('Unable to connect to Mongo.')
+        process.exit(1)
+    } else {
+        app.listen(port);
+        console.log('listen to port ' + port);
+    }
+});
