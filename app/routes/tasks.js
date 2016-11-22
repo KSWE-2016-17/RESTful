@@ -27,7 +27,7 @@ tasks.param('id', function (req, res, next, id) {
 
 // Tasks
 tasks.route('/')
-    .get(function (req, res) {
+    .get(function (req, res, next) {
 
         // Filter
         var radius = req.query.radius || config.tasks.defaultRadius;
@@ -37,20 +37,31 @@ tasks.route('/')
 
         var startzeit = req.query.startzeit || null;
 
-        TinyTaskDB.Task.find({}, function (err, task) {
-            var taskMap = {};
-
-            task.forEach(function (task) {
-                taskMap[task._id] = task;
-            });
-
-            res.send(taskMap);
+        TaskModel.filterBy({
+            radius: radius,
+            starttime: startzeit
+        }, function (err, users) {
+            if(err){
+                next(err);
+            }else {
+                res.send(users);
+            }
         });
 
     })
-    .post(validate({body: validScheme.postTask}), function (req, res) {
+    .post(validate({body: validScheme.postTask}), function (req, res, next) {
 
+        var userId = req.user.sub;
 
+        TaskModel.saveFromJson(userId, req.body, function (err, id) {
+
+            if (err) {
+                next(err)
+            } else {
+                res.send({taskid: id})
+            }
+
+        });
 
     });
 
@@ -59,19 +70,37 @@ tasks.route('/:id')
     .get(function (req, res) {
         res.send(res.locals.task);
     })
-    .put(validate({body: validScheme.putTask}), function (req, res) {
+    .put(validate({body: validScheme.putTask}), function (req, res, next) {
+
+        TaskModel.updateFromJson(taskId, req.body, function (err, task) {
+            if (err) {
+                next(err);
+            } else {
+                res.json({
+                    "status": "ok"
+                });
+            }
+        });
 
     })
-    .delete(function (req, res) {
-
+    .delete(function (req, res, next) {
+        TaskModel.deleteById(taskId, function (err) {
+            if (err) {
+                next(err)
+            } else {
+                res.json({
+                    "status": "ok"
+                })
+            }
+        })
     });
 
 // Position
 tasks.route('/:id/position')
-    .get(function (req, res) {
+    .get(function (req, res, next) {
         TaskModel.findPosition(taskId, function (err, position) {
             if (err) {
-
+                next(err);
             } else {
                 res.send(position);
             }
@@ -80,10 +109,15 @@ tasks.route('/:id/position')
 
 // Applications
 tasks.route('/:id/applications')
-    .get(function (req, res) {
-        res.send(res.locals.task);
+    .get(function (req, res, next) {
+        TaskModel.findApplications(taskId, function (err, applications) {
+            if (err) {
+                next(err);
+            } else {
+                res.send(applications);
+            }
+        });
     });
-
 
 
 module.exports = tasks;

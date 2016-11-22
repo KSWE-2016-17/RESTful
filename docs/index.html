@@ -47,134 +47,145 @@
     <span class="hljs-string">"_id"</span>,
     <span class="hljs-string">"displayName"</span>
   ]
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="benutzer-benutzer-delete" class="action delete"><h4 class="action-heading"><div class="name">löschen</div><a href="#benutzer-benutzer-delete" class="method delete">DELETE</a><code class="uri">/users/{user_id}</code></h4><h4>Example URI</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/users/<span class="hljs-attribute" title="user_id">user_id</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>user_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Benutzer</p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/plain</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>failed to load user</code></pre><div style="height: 1px;"></div></div></div></div><div id="benutzer-benutzer-delete" class="action delete"><h4 class="action-heading"><div class="name">löschen</div><a href="#benutzer-benutzer-delete" class="method delete">DELETE</a><code class="uri">/users/{user_id}</code></h4><h4>Example URI</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/users/<span class="hljs-attribute" title="user_id">user_id</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>user_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Benutzer</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-message: <span class="hljs-string">"erfolgreich gelöscht"</span>
-}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>204</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/plain</span></code></pre><div style="height: 1px;"></div></div></div></div></div><div id="benutzer-bewertung" class="resource"><h3 class="resource-heading">Bewertung <a href="#benutzer-bewertung" class="permalink">&nbsp;&para;</a></h3><p>Benuter bewerten</p>
-<div id="benutzer-bewertung-get" class="action get"><h4 class="action-heading"><div class="name">anzeigen</div><a href="#benutzer-bewertung-get" class="method get">GET</a><code class="uri">/users/{user_id}/rating</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/users/<span class="hljs-attribute" title="user_id">user_id</span>/rating</span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>user_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Benutzer</p>
+  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ok"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/plain</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>failed to load user</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="benutzer-bewertung" class="resource"><h3 class="resource-heading">Bewertung <a href="#benutzer-bewertung" class="permalink">&nbsp;&para;</a></h3><p>Benutzer bewerten</p>
+<div id="benutzer-bewertung-get" class="action get"><h4 class="action-heading"><div class="name">anzeigen</div><a href="#benutzer-bewertung-get" class="method get">GET</a><code class="uri">/users/{user_id}/ratings</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/users/<span class="hljs-attribute" title="user_id">user_id</span>/ratings</span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>user_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Benutzer</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"bar"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="benutzer-bewertung-post" class="action post"><h4 class="action-heading"><div class="name">erstellen</div><a href="#benutzer-bewertung-post" class="method post">POST</a><code class="uri">/users/{user_id}/rating</code></h4><h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/users/<span class="hljs-attribute" title="user_id">user_id</span>/rating</span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>user_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Benutzer</p>
-</dd></dl></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">rating</span>": <span class="hljs-value"><span class="hljs-string">"1"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"bar"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="tasks" class="resource-group"><h2 class="group-heading">Tasks <a href="#tasks" class="permalink">&para;</a></h2><div id="tasks-tasks" class="resource"><h3 class="resource-heading">Tasks <a href="#tasks-tasks" class="permalink">&nbsp;&para;</a></h3><div id="tasks-tasks-get" class="action get"><h4 class="action-heading"><div class="name">alle anzeigen</div><a href="#tasks-tasks-get" class="method get">GET</a><code class="uri">/tasks</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks</span></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"bar"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="tasks-tasks-post" class="action post"><h4 class="action-heading"><div class="name">erstellen</div><a href="#tasks-tasks-post" class="method post">POST</a><code class="uri">/tasks</code></h4><h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"String"</span></span>,
-  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"String"</span></span>,
-  "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-string">"Number"</span></span>,
-  "<span class="hljs-attribute">position</span>": <span class="hljs-value"><span class="hljs-string">"Number"</span></span>,
-  "<span class="hljs-attribute">starts</span>": <span class="hljs-value">[
-    <span class="hljs-string">"{type: Date"</span>,
-    <span class="hljs-string">"default: Date.now}"</span>
+  "<span class="hljs-attribute">results</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+  "<span class="hljs-attribute">ratings</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">task</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/tasks/10"</span></span>,
+      "<span class="hljs-attribute">isExecutor</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+      "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">task</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/tasks/4"</span></span>,
+      "<span class="hljs-attribute">isExecutor</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+      "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span>
+    </span>}
   ]
-</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
-  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
-  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
-  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">payment</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
-    </span>}</span>,
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="benutzer-bewertung-post" class="action post"><h4 class="action-heading"><div class="name">erstellen</div><a href="#benutzer-bewertung-post" class="method post">POST</a><code class="uri">/users/{user_id}/ratings</code></h4><h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/users/<span class="hljs-attribute" title="user_id">user_id</span>/ratings</span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>user_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Benutzer</p>
+</dd></dl></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+    taskid": 1,
+    "value": 1,
+    "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ok"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/plain</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>Invalid Json</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="tasks" class="resource-group"><h2 class="group-heading">Tasks <a href="#tasks" class="permalink">&para;</a></h2><div id="tasks-tasks" class="resource"><h3 class="resource-heading">Tasks <a href="#tasks-tasks" class="permalink">&nbsp;&para;</a></h3><div id="tasks-tasks-get" class="action get"><h4 class="action-heading"><div class="name">alle anzeigen</div><a href="#tasks-tasks-get" class="method get">GET</a><code class="uri">/tasks</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks</span></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">1</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdBy</span>": <span class="hljs-value"><span class="hljs-string">"582c5174e7828529013defd7"</span></span>,
+    "<span class="hljs-attribute">assignedTo</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a954ee04b3feaebe"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span></span>,
+    "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">4.65</span></span>,
+    "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"fluppie"</span></span>,
+    "<span class="hljs-attribute">applications</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"582c517435b9e8de108dea20"</span></span>,
+        "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span>
+      </span>}
+    ]</span>,
+    "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"1996-02-11T14:16:25.000Z"</span></span>,
     "<span class="hljs-attribute">position</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">starts</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span>
+      "<span class="hljs-attribute">latitude</span>": <span class="hljs-value"><span class="hljs-number">46.2515</span></span>,
+      "<span class="hljs-attribute">longitude</span>": <span class="hljs-value"><span class="hljs-number">0.0666</span>
     </span>}
   </span>}</span>,
-  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
-    <span class="hljs-string">"name"</span>,
-    <span class="hljs-string">"description"</span>
-  ]
+  "<span class="hljs-attribute">2</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">createdBy</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a9022e332cb3ba47"</span></span>,
+    "<span class="hljs-attribute">assignedTo</span>": <span class="hljs-value"><span class="hljs-string">"582c5174f2989db743a98dd0"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span></span>,
+    "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">4.29</span></span>,
+    "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"wuppie"</span></span>,
+    "<span class="hljs-attribute">applications</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a954ee04b3feaebe"</span></span>,
+        "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span>
+      </span>}
+    ]</span>,
+    "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"1977-03-19T15:15:24.000Z"</span></span>,
+    "<span class="hljs-attribute">position</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">latitude</span>": <span class="hljs-value"><span class="hljs-number">33.9343</span></span>,
+      "<span class="hljs-attribute">longitude</span>": <span class="hljs-value"><span class="hljs-number">26.8059</span>
+    </span>}
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="tasks-tasks-post" class="action post"><h4 class="action-heading"><div class="name">erstellen</div><a href="#tasks-tasks-post" class="method post">POST</a><code class="uri">/tasks</code></h4><h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Task"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Task"</span></span>,
+  "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+  "<span class="hljs-attribute">position</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">latitude</span>": <span class="hljs-value"><span class="hljs-number">53.1234567543</span></span>,
+    "<span class="hljs-attribute">longitude</span>": <span class="hljs-value"><span class="hljs-number">53.1234567543</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"2010-02-01T15:13:21.000Z"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">task_id</span>": <span class="hljs-value"><span class="hljs-string">"42"</span>
+  "<span class="hljs-attribute">taskid</span>": <span class="hljs-value"><span class="hljs-number">15</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="tasks-task" class="resource"><h3 class="resource-heading">Task <a href="#tasks-task" class="permalink">&nbsp;&para;</a></h3><div id="tasks-task-get" class="action get"><h4 class="action-heading"><div class="name">anzeigen</div><a href="#tasks-task-get" class="method get">GET</a><code class="uri">/tasks/{task_id}</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks/<span class="hljs-attribute" title="task_id">task_id</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>task_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Task</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"bar"</span>
+  "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">createdBy</span>": <span class="hljs-value"><span class="hljs-string">"582c5174e7828529013defd7"</span></span>,
+  "<span class="hljs-attribute">assignedTo</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a954ee04b3feaebe"</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span></span>,
+  "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">4.65</span></span>,
+  "<span class="hljs-attribute">applications</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/1/applications"</span></span>,
+  "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"1996-02-11T14:16:25.000Z"</span></span>,
+  "<span class="hljs-attribute">position</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/1/position"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="tasks-task-put" class="action put"><h4 class="action-heading"><div class="name">updaten</div><a href="#tasks-task-put" class="method put">PUT</a><code class="uri">/tasks/{task_id}</code></h4><h4>Example URI</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks/<span class="hljs-attribute" title="task_id">task_id</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>task_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Task</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">foo</span>": <span class="hljs-value"><span class="hljs-string">"bar"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="tasks-task-delete" class="action delete"><h4 class="action-heading"><div class="name">löschen</div><a href="#tasks-task-delete" class="method delete">DELETE</a><code class="uri">/tasks/{task_id}</code></h4><h4>Example URI</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks/<span class="hljs-attribute" title="task_id">task_id</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>task_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Task</p>
-</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>204</code></strong></div></div></div><div id="tasks-task-1" class="resource"><h3 class="resource-heading">Task <a href="#tasks-task-1" class="permalink">&nbsp;&para;</a></h3><div id="tasks-task-get-1" class="action get"><h4 class="action-heading"><div class="name">Position anzeigen</div><a href="#tasks-task-get-1" class="method get">GET</a><code class="uri">/tasks/{task_id}/position</code></h4><p>Es wird der Längen- und Breitengrad des Tasks zurück gegeben.</p>
+  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ok"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/plain</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>Invalid Json</code></pre><div style="height: 1px;"></div></div></div></div><div id="tasks-task-delete" class="action delete"><h4 class="action-heading"><div class="name">löschen</div><a href="#tasks-task-delete" class="method delete">DELETE</a><code class="uri">/tasks/{task_id}</code></h4><h4>Example URI</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks/<span class="hljs-attribute" title="task_id">task_id</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>task_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Task</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ok"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="tasks-task-1" class="resource"><h3 class="resource-heading">Task <a href="#tasks-task-1" class="permalink">&nbsp;&para;</a></h3><div id="tasks-task-get-1" class="action get"><h4 class="action-heading"><div class="name">Position anzeigen</div><a href="#tasks-task-get-1" class="method get">GET</a><code class="uri">/tasks/{task_id}/position</code></h4><p>Es wird der Längen- und Breitengrad des Tasks zurück gegeben.</p>
 <h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks/<span class="hljs-attribute" title="task_id">task_id</span>/position</span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>task_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Task</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">lng</span>": <span class="hljs-value"><span class="hljs-string">"51.46135351"</span></span>,
-  "<span class="hljs-attribute">lat</span>": <span class="hljs-value"><span class="hljs-string">"52.46546543"</span>
+  "<span class="hljs-attribute">lat</span>": <span class="hljs-value"><span class="hljs-string">"52.46546543"</span></span>,
+  "<span class="hljs-attribute">lng</span>": <span class="hljs-value"><span class="hljs-string">"51.46135351"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="tasks-task-2" class="resource"><h3 class="resource-heading">Task <a href="#tasks-task-2" class="permalink">&nbsp;&para;</a></h3><div id="tasks-task-get-2" class="action get"><h4 class="action-heading"><div class="name">Bewerber anzeigen</div><a href="#tasks-task-get-2" class="method get">GET</a><code class="uri">/tasks/{task_id}/applications</code></h4><p>Gibt die Bewerber eines Tasks zurück.</p>
 <h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks/<span class="hljs-attribute" title="task_id">task_id</span>/applications</span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>task_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id vom Task</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-        <span class="hljs-string">"bewerber"</span>:{
-            {
-              <span class="hljs-string">"_id"</span>: <span class="hljs-string">"auth0|askdlf123012naf"</span>,
-              <span class="hljs-string">"displayName"</span>: <span class="hljs-string">"Foo"</span>,
-              <span class="hljs-string">"picture"</span>: <span class="hljs-string">"http://picture.me/foo42"</span>,
-              <span class="hljs-string">"address"</span>: <span class="hljs-string">"Adresse 42, Berlin"</span>,
-              <span class="hljs-string">"ratings"</span>: <span class="hljs-string">"http://localhost/users/:id/ratings"</span>
-            },
-            {
-              <span class="hljs-string">"_id"</span>: <span class="hljs-string">"auth0|askdlf123012naf"</span>,
-              <span class="hljs-string">"displayName"</span>: <span class="hljs-string">"Foo"</span>,
-              <span class="hljs-string">"picture"</span>: <span class="hljs-string">"http://picture.me/foo42"</span>,
-              <span class="hljs-string">"address"</span>: <span class="hljs-string">"Adresse 42, Berlin"</span>,
-              <span class="hljs-string">"ratings"</span>: <span class="hljs-string">"http://localhost/users/:id/ratings"</span>
-            }
-        }
-    }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="tasks-task-3" class="resource"><h3 class="resource-heading">Task <a href="#tasks-task-3" class="permalink">&nbsp;&para;</a></h3><div id="tasks-task-get-3" class="action get"><h4 class="action-heading"><div class="name">Suche anzeigen</div><a href="#tasks-task-get-3" class="method get">GET</a><code class="uri">/tasks{?radius,startzeit}</code></h4><p>Gibt die eingegrenzten Tasks wieder.</p>
-<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks?<span class="hljs-attribute">radius=</span><span class="hljs-literal"></span>&<span class="hljs-attribute">startzeit=</span><span class="hljs-literal"></span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>radius</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Radius um die Tasks einzugrenzen</p>
-</dd><dt>startzeit</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Zeit wann der Task begonnen hat</p>
-</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">results</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-  "<span class="hljs-attribute">tasks</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">1</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-      "<span class="hljs-attribute">createdBy</span>": <span class="hljs-value"><span class="hljs-string">"582c5174e7828529013defd7"</span></span>,
-      "<span class="hljs-attribute">assignedTo</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a954ee04b3feaebe"</span></span>,
-      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span></span>,
-      "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">4.65</span></span>,
-      "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"fluppie"</span></span>,
-      "<span class="hljs-attribute">applications</span>": <span class="hljs-value">[
-        {
-          "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"582c517435b9e8de108dea20"</span></span>,
-          "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span>
-        </span>}
-      ]</span>,
-      "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"1996-02-11T14:16:25.000Z"</span></span>,
-      "<span class="hljs-attribute">position</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">latitude</span>": <span class="hljs-value"><span class="hljs-number">46.2515</span></span>,
-        "<span class="hljs-attribute">longitude</span>": <span class="hljs-value"><span class="hljs-number">0.0666</span>
-      </span>}
-    </span>}</span>,
-    "<span class="hljs-attribute">2</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-      "<span class="hljs-attribute">createdBy</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a9022e332cb3ba47"</span></span>,
-      "<span class="hljs-attribute">assignedTo</span>": <span class="hljs-value"><span class="hljs-string">"582c5174f2989db743a98dd0"</span></span>,
-      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span></span>,
-      "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">4.29</span></span>,
-      "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"wuppie"</span></span>,
-      "<span class="hljs-attribute">applications</span>": <span class="hljs-value">[
-        {
-          "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a954ee04b3feaebe"</span></span>,
-          "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span>
-        </span>}
-      ]</span>,
-      "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"1977-03-19T15:15:24.000Z"</span></span>,
-      "<span class="hljs-attribute">position</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">latitude</span>": <span class="hljs-value"><span class="hljs-number">33.9343</span></span>,
-        "<span class="hljs-attribute">longitude</span>": <span class="hljs-value"><span class="hljs-number">26.8059</span>
-      </span>}
+  "<span class="hljs-attribute">results</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">applications</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/users/582c5174215d27113c3c709f"</span></span>,
+      "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span>
     </span>}
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="tasks-task-3" class="resource"><h3 class="resource-heading">Task <a href="#tasks-task-3" class="permalink">&nbsp;&para;</a></h3><div id="tasks-task-get-3" class="action get"><h4 class="action-heading"><div class="name">Suche anzeigen</div><a href="#tasks-task-get-3" class="method get">GET</a><code class="uri">/tasks{?radius,startzeit}</code></h4><p>Gibt die eingegrenzten Tasks wieder.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://localhost:8080</span>/tasks?<span class="hljs-attribute">radius=</span><span class="hljs-literal"></span>&<span class="hljs-attribute">startzeit=</span><span class="hljs-literal"></span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>radius</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Radius um die Tasks einzugrenzen</p>
+</dd><dt>startzeit</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Zeit wann der Task begonnen hat</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">1</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdBy</span>": <span class="hljs-value"><span class="hljs-string">"582c5174e7828529013defd7"</span></span>,
+    "<span class="hljs-attribute">assignedTo</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a954ee04b3feaebe"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Task Update! 2"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span></span>,
+    "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">4.65</span></span>,
+    "<span class="hljs-attribute">applications</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/tasks/1/applications"</span></span>,
+    "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"1996-02-11T14:16:25.000Z"</span></span>,
+    "<span class="hljs-attribute">position</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/tasks/1/position"</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">2</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">createdBy</span>": <span class="hljs-value"><span class="hljs-string">"582c5174a9022e332cb3ba47"</span></span>,
+    "<span class="hljs-attribute">assignedTo</span>": <span class="hljs-value"><span class="hljs-string">"582c5174f2989db743a98dd0"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"</span></span>,
+    "<span class="hljs-attribute">payment</span>": <span class="hljs-value"><span class="hljs-number">4.29</span></span>,
+    "<span class="hljs-attribute">applications</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/tasks/2/applications"</span></span>,
+    "<span class="hljs-attribute">starts</span>": <span class="hljs-value"><span class="hljs-string">"1977-03-19T15:15:24.000Z"</span></span>,
+    "<span class="hljs-attribute">position</span>": <span class="hljs-value"><span class="hljs-string">"http://localhost:8080/tasks/2/position"</span>
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 21 Nov 2016</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 22 Nov 2016</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

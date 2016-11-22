@@ -12,14 +12,14 @@ exports.findById = function (id, cb) {
 };
 
 exports.findAll = function (cb) {
-    TinyTaskDB.User.find({}, function (err, users) {
-        var userMap = {};
+    TinyTaskDB.User.find({}, function (err, tasks) {
+        var taskMap = {};
 
-        users.forEach(function (user) {
-            userMap[user._id] = mapper.convertUserToJsonResponse(user);
+        tasks.forEach(function (task) {
+            taskMap[user._id] = mapper.convertUserToJsonResponse(task);
         });
 
-        cb(err, userMap)
+        cb(err, taskMap);
     });
 };
 
@@ -60,21 +60,28 @@ exports.saveRatingFromJson = function (id, json, cb) {
             }
         );
     });
+
 };
 
 exports.loadRatings = function (id, cb) {
 
     TinyTaskDB.User.findOne({'_id': id}, function (err, user) {
 
-        var ratingMap = {};
+        if(err){
+            cb(err, null)
+        }else {
 
-        ratingMap["results"] = user.ratings.length;
-        ratingMap["ratings"] = [];
-        user.ratings.forEach(function (rating) {
-            ratingMap["ratings"].push(mapper.convertUserRatingToJsonResponse(rating))
-        });
+            var ratingMap = {};
 
-        cb(err, ratingMap);
+            ratingMap["results"] = user.ratings.length;
+            ratingMap["ratings"] = [];
+            user.ratings.forEach(function (rating) {
+                ratingMap["ratings"].push(mapper.convertUserRatingToJsonResponse(rating))
+            });
+
+            cb(err, ratingMap);
+
+        }
 
     });
 

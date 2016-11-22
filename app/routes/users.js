@@ -1,9 +1,9 @@
-const users = require('express').Router();
+const users     = require('express').Router();
 
-var validate = require('express-jsonschema').validate,
+var validate    = require('express-jsonschema').validate,
     validScheme = require('../helper/validjsonscheme'),
-    UserModel = require('../models/users'),
-    config = require('../config');
+    UserModel   = require('../models/users'),
+    config      = require('../config');
 
 var userId = null;
 
@@ -41,13 +41,10 @@ users.route('/:id')
             res.send(res.locals.user)
         }
     )
-    .delete(function (req, res) {
+    .delete(function (req, res, next) {
             UserModel.deleteById(userId, function (err) {
                 if (err) {
-                    res.status(400).json({
-                        "status": "error",
-                        "message": err.message
-                    })
+                    next(err)
                 } else {
                     res.json({
                         "status": "ok"
@@ -59,30 +56,23 @@ users.route('/:id')
 
 // Rating
 users.route('/:id/ratings')
-    .get(function (req, res) {
+    .get(function (req, res, next) {
 
         UserModel.loadRatings(userId, function (err, ratings) {
             if (err) {
-                res.status(400).json({
-                    "status": "error",
-                    "message": err.message
-                })
+                next(err);
             } else {
                 res.send(ratings);
             }
         });
 
     })
-    .post(validate({body: validScheme.postRating}), function (req, res) {
+    .post(validate({body: validScheme.postRating}), function (req, res, next) {
 
         UserModel.saveRatingFromJson(userId, req.body, function (err, rating) {
             if (err) {
-                res.status(400).json({
-                    "status": "error",
-                    "message": err.message
-                })
+                next(err);
             } else {
-                console.log(rating);
                 res.json({
                     "status": "ok"
                 })

@@ -191,19 +191,68 @@ Gibt die Liste aller Benutzer
 ## alle anzeigen [GET]
 + Response 200 (application/json)
 
-        {
-            "foo": "bar"
-        }
+{
+  "1": {
+    "_id": 1,
+    "createdBy": "582c5174e7828529013defd7",
+    "assignedTo": "582c5174a954ee04b3feaebe",
+    "name": "Lorem ipsum",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+    "payment": 4.65,
+    "category": "fluppie",
+    "applications": [
+      {
+        "user": "582c517435b9e8de108dea20",
+        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+      }
+    ],
+    "starts": "1996-02-11T14:16:25.000Z",
+    "position": {
+      "latitude": 46.2515,
+      "longitude": 0.0666
+    }
+  },
+  "2": {
+    "_id": 2,
+    "createdBy": "582c5174a9022e332cb3ba47",
+    "assignedTo": "582c5174f2989db743a98dd0",
+    "name": "Lorem ipsum",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+    "payment": 4.29,
+    "category": "wuppie",
+    "applications": [
+      {
+        "user": "582c5174a954ee04b3feaebe",
+        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+      }
+    ],
+    "starts": "1977-03-19T15:15:24.000Z",
+    "position": {
+      "latitude": 33.9343,
+      "longitude": 26.8059
+    }
+  } 
+}
 
 ## erstellen [POST]
 + Request (application/json)
-  + Attributes (CreateTaskObject)
+
+	{
+	  "name": "Task",
+	  "description": "Task",
+	  "payment": 5,
+	  "position": {
+		"latitude": 53.1234567543,
+		"longitude": 53.1234567543
+	  },
+	  "starts": "2010-02-01T15:13:21.000Z"
+	}
 
 + Response 200 (application/json)
 
-        {
-            "task_id": "42"
-        }
+	{
+	  "taskid": 15
+	}
 
 
 
@@ -217,21 +266,37 @@ Gibt die Liste aller Benutzer
 
 + Response 200 (application/json)
 
-        {
-            "foo": "bar"
-        }
-
+	{
+	  "_id": 1,
+	  "createdBy": "582c5174e7828529013defd7",
+	  "assignedTo": "582c5174a954ee04b3feaebe",
+	  "name": "Lorem ipsum",
+	  "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+	  "payment": 4.65,
+	  "applications": "http://localhost:8080/1/applications",
+	  "starts": "1996-02-11T14:16:25.000Z",
+	  "position": "http://localhost:8080/1/position"
+	}
+		
 ### updaten [PUT]
 
 + Response 200 (application/json)
 
                 {
-                    "foo": "bar"
+                    "status": "ok"
                 }
+				
++ Response 400 (text/plain)
+
+	Invalid Json
 
 ### löschen [DELETE]
 
-+ Response 204
++ Response 200 (application/json)
+
+                {
+                    "status": "ok"
+                }
 
 
 
@@ -250,8 +315,8 @@ Es wird der Längen- und Breitengrad des Tasks zurück gegeben.
 + Response 200 (application/json)
 
         {
-              "lng": "51.46135351",
-			        "lat": "52.46546543"
+			"lat": "52.46546543",
+            "lng": "51.46135351"	  
         }
 
 
@@ -269,23 +334,15 @@ Gibt die Bewerber eines Tasks zurück.
 
 + Response 200 (application/json)
         {
-            "bewerber":{
-                {
-                  "_id": "auth0|askdlf123012naf",
-                  "displayName": "Foo",
-                  "picture": "http://picture.me/foo42",
-                  "address": "Adresse 42, Berlin",
-                  "ratings": "http://localhost/users/:id/ratings"
-                },
-                {
-                  "_id": "auth0|askdlf123012naf",
-                  "displayName": "Foo",
-                  "picture": "http://picture.me/foo42",
-                  "address": "Adresse 42, Berlin",
-                  "ratings": "http://localhost/users/:id/ratings"
-                }
-            }
-        }
+		  "results": 1,
+		  "applications": [
+			{
+			  "user": "http://localhost:8080/users/582c5174215d27113c3c709f",
+			  "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+			}
+		  ]
+		}
+		
 
 
 
@@ -295,54 +352,33 @@ Gibt die Bewerber eines Tasks zurück.
 ## Task [/tasks{?radius,startzeit}]
 + Parameters
     + radius (number) - Radius um die Tasks einzugrenzen
-    + startzeit (number) - Zeit wann der Task begonnen hat
+    + startzeit (string) - Zeit wann der Task begonnen hat
 
 ### Suche anzeigen [GET]
 Gibt die eingegrenzten Tasks wieder.
 
 + Response 200 (application/json)
-{
-   "results":2,
-   "tasks":{
-      "1":{
-         "\_id":1,
-         "createdBy":"582c5174e7828529013defd7",
-         "assignedTo":"582c5174a954ee04b3feaebe",
-         "name":"Lorem ipsum",
-         "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-         "payment":4.65,
-         "category":"fluppie",
-         "applications":[
-            {
-               "user":"582c517435b9e8de108dea20",
-               "comment":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
-            }
-         ],
-         "starts":"1996-02-11T14:16:25.000Z",
-         "position":{
-            "latitude":46.2515,
-            "longitude":0.0666
-         }
-      },
-      "2":{
-         "\_id":2,
-         "createdBy":"582c5174a9022e332cb3ba47",
-         "assignedTo":"582c5174f2989db743a98dd0",
-         "name":"Lorem ipsum",
-         "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-         "payment":4.29,
-         "category":"wuppie",
-         "applications":[
-            {
-               "user":"582c5174a954ee04b3feaebe",
-               "comment":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
-            }
-         ],
-         "starts":"1977-03-19T15:15:24.000Z",
-         "position":{
-            "latitude":33.9343,
-            "longitude":26.8059
-         }
-      }
-   }
-}
+	{
+	  "1": {
+		"_id": 1,
+		"createdBy": "582c5174e7828529013defd7",
+		"assignedTo": "582c5174a954ee04b3feaebe",
+		"name": "Task Update! 2",
+		"description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+		"payment": 4.65,
+		"applications": "http://localhost:8080/tasks/1/applications",
+		"starts": "1996-02-11T14:16:25.000Z",
+		"position": "http://localhost:8080/tasks/1/position"
+	  },
+	  "2": {
+		"_id": 2,
+		"createdBy": "582c5174a9022e332cb3ba47",
+		"assignedTo": "582c5174f2989db743a98dd0",
+		"name": "Lorem ipsum",
+		"description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+		"payment": 4.29,
+		"applications": "http://localhost:8080/tasks/2/applications",
+		"starts": "1977-03-19T15:15:24.000Z",
+		"position": "http://localhost:8080/tasks/2/position"
+	  }
+	}
