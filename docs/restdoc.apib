@@ -99,22 +99,27 @@ Gibt die Liste aller Benutzer
 + Parameters
   + user_id (string) - Id vom Benutzer
 
++ Response 400 (text/plain)
+
+	failed to load user
 
 ### anzeigen [GET]
 + Response 200 (application/json)
   + Attributes (UserObject)
+  
++ Response 400 (text/plain)
+
+	failed to load user
 
 ### löschen [DELETE]
 + Response 200 (application/json)
-  {
-    message: "erfolgreich gelöscht"
-  }
+	{
+	  "status": "ok"
+	}
 
-+ Response 204 (text/plain)
++ Response 400 (text/plain)
 
-
-
-
+	failed to load user
 
 
 
@@ -122,32 +127,55 @@ Gibt die Liste aller Benutzer
 
 
 
-## Bewertung [/users/{user_id}/rating]
-  Benuter bewerten
+
+
+
+## Bewertung [/users/{user_id}/ratings]
+  Benutzer bewerten
 
   + Parameters
-      + user_id (number) - Id vom Benutzer
+      + user_id (string) - Id vom Benutzer
 
 ### anzeigen [GET]
   + Response 200 (application/json)
 
           {
-              "foo": "bar"
-          }
+			  "results": 2,
+			  "ratings": [
+				{
+				  "task": "http://localhost:8080/tasks/10",
+				  "isExecutor": false,
+				  "value": 1,
+				  "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+				},
+				{
+				  "task": "http://localhost:8080/tasks/4",
+				  "isExecutor": true,
+				  "value": 1,
+				  "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+				}
+			  ]
+			}
 
 ### erstellen [POST]
 + Request (application/json)
 
-          {
-              "rating": "1"
-          }
+        {
+			taskid": 1,
+			"value": 1,
+			"comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+		}
 
 
 + Response 200 (application/json)
 
-          {
-              "foo": "bar"
-          }
+	{
+	  "status": "ok"
+	}
+		  
++ Response 400 (text/plain)
+
+	Invalid Json
 
 
 

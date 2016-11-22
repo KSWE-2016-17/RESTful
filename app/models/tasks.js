@@ -1,7 +1,7 @@
 var TinyTaskDB = require("tinytaskdb");
 
 exports.findById = function (id, cb) {
-    TinyTaskDB.Task.findOne({'_id': "582c5174a954ee04b3feaebe"}, function (err, task) {
+    TinyTaskDB.Task.findOne({'_id': id}, function (err, task) {
         cb(err, task);
     });
 };
@@ -16,5 +16,14 @@ exports.saveFromJson = function (body, cb) {
 
     console.log(body);
     cb(null);
+
+};
+
+exports.findPosition = function (id, cb) {
+
+    cb(null, json({
+        'lat': 50.232423424234,
+        'lng': 42.342849203492
+    }));
 
 };

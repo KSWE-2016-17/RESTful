@@ -1,15 +1,18 @@
-const users     = require('express').Router();
+const users = require('express').Router();
 
-var validate    = require('express-jsonschema').validate,
+var validate = require('express-jsonschema').validate,
     validScheme = require('../helper/validjsonscheme'),
-    UserModel   = require('../models/users');
+    UserModel = require('../models/users'),
+    config = require('../config');
+
+var userId = null;
 
 // Middleware
 users.param('id', function (req, res, next, id) {
 
-    var userId = req.params.id;
+    userId = req.params.id;
 
-    UserModel.findById("582c5174a954ee04b3feaebe", function (err, user) {
+    UserModel.findById(userId, function (err, user) {
 
         if (err) {
             next(err);
@@ -39,24 +42,53 @@ users.route('/:id')
         }
     )
     .delete(function (req, res) {
-            res.send("User Delete");
+            UserModel.deleteById(userId, function (err) {
+                if (err) {
+                    res.status(400).json({
+                        "status": "error",
+                        "message": err.message
+                    })
+                } else {
+                    res.json({
+                        "status": "ok"
+                    })
+                }
+            })
         }
     );
 
 // Rating
-users.route('/:id/rating')
+users.route('/:id/ratings')
     .get(function (req, res) {
-        res.send("Rating: userId = " + res.locals.user._id);
-    })
-    .post(validate({body: validScheme.postRating}), function (req, res) {
 
-        UserModel.saveRatingFromJson(req.body, function (err) {
-            res.send("Rating Post")
+        UserModel.loadRatings(userId, function (err, ratings) {
+            if (err) {
+                res.status(400).json({
+                    "status": "error",
+                    "message": err.message
+                })
+            } else {
+                res.send(ratings);
+            }
         });
 
     })
-    .delete(function (req, res) {
-        res.send("Rating Delete")
+    .post(validate({body: validScheme.postRating}), function (req, res) {
+
+        UserModel.saveRatingFromJson(userId, req.body, function (err, rating) {
+            if (err) {
+                res.status(400).json({
+                    "status": "error",
+                    "message": err.message
+                })
+            } else {
+                console.log(rating);
+                res.json({
+                    "status": "ok"
+                })
+            }
+        });
+
     });
 
 

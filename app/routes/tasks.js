@@ -1,14 +1,18 @@
-const tasks     = require('express').Router();
-var TinyTaskDB  = require("tinytaskdb"),
-    config      = require("../config.js");
+const tasks         = require('express').Router();
+var TinyTaskDB      = require("tinytaskdb"),
+    config          = require("../config.js"),
+    TaskModel       = require('../models/tasks'),
+    validate        = require('express-jsonschema').validate,
+    validScheme     = require('../helper/validjsonscheme');
+
+var taskId = null;
 
 // Middleware
 tasks.param('id', function (req, res, next, id) {
 
-    var taskId = req.params.id;
+    taskId = req.params.id;
 
-    TinyTaskDB.Task.findOne({'_id': taskId}, function (err, task) {
-
+    TaskModel.findById(taskId, function (err, task) {
         if (err) {
             next(err);
         } else if (task) {
@@ -17,7 +21,6 @@ tasks.param('id', function (req, res, next, id) {
         } else {
             next(new Error('failed to load task'));
         }
-
     });
 
 });
@@ -44,20 +47,34 @@ tasks.route('/')
             res.send(taskMap);
         });
 
+    })
+    .post(validate({body: validScheme.postTask}), function (req, res) {
+
+
+
     });
 
 // Task
 tasks.route('/:id')
     .get(function (req, res) {
         res.send(res.locals.task);
+    })
+    .put(validate({body: validScheme.putTask}), function (req, res) {
+
+    })
+    .delete(function (req, res) {
+
     });
 
 // Position
 tasks.route('/:id/position')
     .get(function (req, res) {
-        res.json({
-            'lat': 50.232423424234,
-            'lng': 42.342849203492
+        TaskModel.findPosition(taskId, function (err, position) {
+            if (err) {
+
+            } else {
+                res.send(position);
+            }
         });
     });
 
@@ -66,6 +83,7 @@ tasks.route('/:id/applications')
     .get(function (req, res) {
         res.send(res.locals.task);
     });
+
 
 
 module.exports = tasks;
