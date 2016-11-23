@@ -1,41 +1,44 @@
+var express     = require('express'),
+    app         = express(),
+    config      = require('./app/config.js');
 
-var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 8080;
-var mongodb  = process.env.MONGO_DB || "mongodb://localhost/test";
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash    = require('connect-flash');
+var port        = process.env.PORT || 8080,
+    mongodb     = process.env.MONGO_DB || config.mongodb,
+    mongoose    = require('mongoose'),
+    logger      = require('morgan'),
+    bodyParser  = require('body-parser'),
+    jwt         = require('express-jwt'),
+    routes      = require('./app/routes');
 
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-// db config
+// set json pretty format: 2 in development, 0 in production
+app.set('json spaces', 2);
+
+// authentication
+app.use(jwt({
+ audience:   config.auth.clientID,
+ issuer:     'https://' + config.auth.domain + '/',
+ secret:     new Buffer(config.auth.clientSecret, 'base64')
+ }));
+ app.use(require("./app/middlewares/authusercheck"));
+
+// routes
+app.use('/', routes);
+
+// error handling
+app.use(require("./app/middlewares/errors"));
+
+// db connect and create server
 mongoose.Promise = global.Promise;
-mongoose.connect(mongodb);
-
-require('./config/passport')(passport);
-
-app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json()); // get information from html forms
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.set('view engine', 'ejs'); // set up ejs for templating
-
-// required for passport
-app.use(session({
-    secret: 'fhbielefeldtinytask', // session secret
-    resave: true,
-    saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
-app.listen(port);
-console.log('listen to port ' + port);
+mongoose.connect(mongodb, function (err) {
+    if (err) {
+        console.log('Unable to connect to Mongo.')
+        process.exit(1)
+    } else {
+        app.listen(port);
+        console.log('listen to port ' + port);
+    }
+});
