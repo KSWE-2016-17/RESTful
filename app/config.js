@@ -1,5 +1,4 @@
 module.exports = {
-    "apiDomain" : 'https://tinytaskrest.herokuapp.com',
     'mongodb': 'mongodb://192.168.11.130/tinytask',
     'auth': {
         'domain': 'tinytask.eu.auth0.com',

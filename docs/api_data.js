@@ -1,0 +1,640 @@
+define({ "api": [
+  {
+    "type": "get",
+    "url": "/",
+    "title": "Verbindung prüfen",
+    "name": "CheckConnection",
+    "group": "Connection_Check",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "app/routes/index.js",
+    "groupTitle": "Connection_Check",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/tasks/:id",
+    "title": "Task löschen",
+    "name": "DeleteTask",
+    "group": "Tasks",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tasks unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n  \"status\": \"ok\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/tasks",
+    "title": "Alle Tasks anzeigen",
+    "name": "GetAllTasks",
+    "group": "Tasks",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": " Content-Type: application/json\n{\n    \"5838435a54b5204ad2c1f41c\": {\n        \"_id\": \"5838435a54b5204ad2c1f41c\",\n        \"createdBy\": \"/users/58372443d79cda357ee7c61e\",\n        \"assignedTo\": \"/users/58372443541e2f78b1fc7e45\",\n        \"name\": \"do non duis dolore non\",\n        \"description\": \"Occaecat sint esse mollit nisi magna enim sunt nisi in officia laboris laborum.\",\n        \"payment\": 3,\n        \"applications\": \"/tasks/5838435a54b5204ad2c1f41c/applications\",\n        \"starts\": \"2000-06-29T23:05:13.000Z\",\n        \"position\": \"/tasks/5838435a54b5204ad2c1f41c/position\",\n        \"category\": \"deserunt\"\n    },\n    \"5838435a2d139ff7d5eed505\": {\n        \"_id\": \"5838435a2d139ff7d5eed505\",\n        \"createdBy\": \"/users/5837244354c1b3e438366c70\",\n        \"assignedTo\": \"/users/58372443be5b5576960311cf\",\n        \"name\": \"exercitation ex ex ipsum ipsum\",\n        \"description\": \"Deserunt ex et magna nisi ut aute mollit.\",\n        \"payment\": 4,\n        \"applications\": \"/tasks/5838435a2d139ff7d5eed505/applications\",\n        \"starts\": \"1971-12-06T18:30:46.000Z\",\n        \"position\": \"/tasks/5838435a2d139ff7d5eed505/position\",\n        \"category\": \"pariatur\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/tasks/:id",
+    "title": "Task anzeigen",
+    "name": "GetTask",
+    "group": "Tasks",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tasks unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n  \"id\": \"58372443be5b5576960311cf\",\n  \"displayName\": \"Sherrie Cameron\",\n  \"email\": \"cheriadams@strezzo.com\",\n  \"picture\": \"\",\n  \"address\": \"Rutherford Place, Jacumba\",\n  \"ratings\": \"/users/58372443be5b5576960311cf/ratings\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/tasks/:id/position",
+    "title": "Task position anzeigen",
+    "name": "GetTaskPosition",
+    "group": "Tasks",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tasks unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n  \"lat\": 56.4848,\n  \"lng\": 75.6019\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/tasks",
+    "title": "Task einfügen",
+    "name": "PostTask",
+    "group": "Tasks",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Request",
+          "content": "Content-Type: application/json\n{\n   \"name\": \"Haribos\",\n   \"description\": \"Gummibärchen\",\n   \"payment\": 5,\n   \"position\": {\n       \"latitude\": 53.1234567543,\n       \"longitude\": 53.1234567543\n   },\n   \"starts\": \"2016-12-01T15:13:21.000Z\"\n   \"category\": \"Süßigkeiten\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n  \"taskid\": \"5839c75f4414d010d4cdd650\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "put",
+    "url": "/tasks/:id",
+    "title": "Task bearbeiten",
+    "name": "PutTask",
+    "group": "Tasks",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tasks unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Request",
+          "content": "Content-Type: application/json\n{\n   \"name\": \"Haribos\",\n   \"description\": \"Gummibärchen\",\n   \"payment\": 5,\n   \"position\": {\n       \"latitude\": 53.1234567543,\n       \"longitude\": 53.1234567543\n   },\n   \"starts\": \"2016-12-01T15:13:21.000Z\"\n   \"category\": \"Süßigkeiten\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n  \"status\": \"ok\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/tasks/:id/rate",
+    "title": "Task Mitwirkende bewerten",
+    "name": "RateTask",
+    "group": "Tasks",
+    "description": "<p>Hier können die Mitwirkenden bewertet werden. Sollten Sie der Ersteller des Task sein, werden Sie den Auftragnehmer bewerten und als Auftragnehmer bewerten Sie den Auftraggeber.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tasks unique ID.</p>"
+          }
+        ],
+        "Request": [
+          {
+            "group": "Request",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value",
+            "description": "<p>Bewertung true=positive, false=negativ.</p>"
+          },
+          {
+            "group": "Request",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Kommentar zusätzlich zur Bewertung.</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Request",
+          "content": "Content-Type: application/json\n{\n   \"value\": true,\n   \"comment\": \"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n     \"status\": \"ok\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/tasks/:id/applications",
+    "title": "Task-Bewerber anzeigen",
+    "name": "TaskApplications",
+    "group": "Tasks",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tasks unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/tasks.js",
+    "groupTitle": "Tasks",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n  \"results\": 1,\n  \"applications\": [\n    {\n      \"user\": \"/users/582c5174215d27113c3c709f\",\n      \"comment\": \"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\"\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/users/:id",
+    "title": "Benutzer löschen",
+    "name": "DeleteUser",
+    "group": "Users",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Users unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/users.js",
+    "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/users",
+    "title": "Alle Benutzer anzeigen",
+    "name": "GetAllUser",
+    "group": "Users",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": "Content-Type: application/json\n{\n    \"58372443be5b5576960311cf\": {\n        \"id\": \"58372443be5b5576960311cf\",\n        \"displayName\": \"Sherrie Cameron\",\n        \"email\": \"cheriadams@strezzo.com\",\n        \"picture\": \"\",\n        \"address\": \"Rutherford Place, Jacumba\",\n        \"ratings\": \"/users/58372443be5b5576960311cf/ratings\"\n    },\n        \"58372443578226d8dd3191b2\": {\n        \"id\": \"58372443578226d8dd3191b2\",\n        \"displayName\": \"Vasquez Heath\",\n        \"email\": \"sherriecameron@strezzo.com\",\n        \"picture\": \"\",\n        \"address\": \"Flatlands Avenue, Summerfield\",\n        \"ratings\": \"/users/58372443578226d8dd3191b2/ratings\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/users.js",
+    "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/users/:id",
+    "title": "Benutzer anzeigen",
+    "name": "GetUser",
+    "group": "Users",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Users unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": " Content-Type: application/json\n {\n  \"id\": \"58372443b4049c9af8d1dcd3\",\n  \"displayName\": \"Susanna Hartman\",\n  \"email\": \"bettemoreno@strezzo.com\",\n  \"picture\": \"\",\n  \"address\": \"Estate Road, Leroy\",\n  \"ratings\": \"/users/58372443b4049c9af8d1dcd3/ratings\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/users.js",
+    "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/users/:id/ratings",
+    "title": "Benutzer Bewertungen",
+    "name": "GetUserRatings",
+    "group": "Users",
+    "permission": [
+      {
+        "name": "AuthToken",
+        "title": "Nur mit gültigem JWT Token",
+        "description": "<p>Bitte übergeben Sie den Authorization Header mit einem gültigen JWT Token</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Users unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Response 200",
+          "content": " Content-Type: application/json\n{\n    \"results\": 2,\n    \"ratings\": [\n    {\n      \"assignedTo\": \"/users/58372443541e2f78b1fc7e45\",\n      \"task\": \"/tasks/5838435a54b5204ad2c1f41c\",\n      \"isExecutor\": true,\n      \"value\": true,\n      \"comment\": \"Quis dolore aliquip et esse sunt dolore esse eu officia consectetur duis dolore reprehenderit reprehenderit.\"\n    },\n    {\n      \"assignedTo\": \"/users/58372443541e2f78b1fc7e45\",\n      \"task\": \"/tasks/5838435a54b5204ad2c1f41c\",\n      \"isExecutor\": false,\n      \"value\": true,\n      \"comment\": \"Voluptate dolore adipisicing reprehenderit laborum.\"\n    }\n    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/users.js",
+    "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Authorization": [
+          {
+            "group": "Authorization",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer JWT Token</p>"
+          }
+        ]
+      }
+    }
+  }
+] });
