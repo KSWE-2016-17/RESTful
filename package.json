@@ -11,5 +11,10 @@
     "morgan": "~1.7.0",
     "request": "^2.79.0",
     "tinytaskdb": "git+https://github.com/KSWE-2016-17/TinyTaskDB.git"
+  },
+  "apidoc": {
+    "version": "0.0.0",
+    "title": "TinyTask Rest Dokumentation",
+    "url" : ""
   }
 }

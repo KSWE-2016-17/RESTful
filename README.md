@@ -1,51 +1,41 @@
-# TinyTask Rest-Api
+# TinyTask Rest
 
-**DIE API IST AKTUELL NOCH UNVOLLSTÄNDIG, KANN JEDOCH ZU TESTZWECKEN GENUTZT WERDEN!!!**
+***AKTUELL WIRD DIE DATENSTRUKTUR GEÄNDERT, ES KANN ZU FEHLERN KOMMEN !!!***
+
+Der Rest Service ist unter https://tinytaskrest.herokuapp.com/ erreichbar.
 
 # Dokumentation
-Die Rest Dokumentation ist unter [https://kswe-2016-17.github.io/tinytask-backend-rest/](https://kswe-2016-17.github.io/tinytask-backend-rest/) zu erreichen
+Die Rest Dokumentation ist unter [https://kswe-2016-17.github.io/tinytask-backend-rest/](https://kswe-2016-17.github.io/tinytask-backend-rest/) zu finden.
 
-# Installation
-Bevor Sie den Server starten, stellen Sie sicher, dass die Datenbank eingerichtet ist.
+# Authentifizierung
+
+## Auth0
+
+Für Auth0 benötigt Ihr die folgenden Daten
+
+|  |  |
+| :----- | :--------- |
+| Domain | tinytask.eu.auth0.com |
+| Client Id | Bp4PPmbo5IXZumI4wrZ2Asi7mJgG9Dk3 |
+| Client Secret | hVGlnq1D4g8-y7UmCkPaWN33FwE11TOmq2_-3J_4FJF6Qk9n1NMwQ_Z2LPEM4-KR |
+
+## Token
+
+Damit die Authentifizierung gelingt, müsst Ihr bei jeder Anfrage, an den Rest Service, den `Authorization` Header mit dem entsprechendem Token mitschicken.
 ```
-git clone https://github.com/KSWE-2016-17/tinytask-backend-rest.git
-cd tinytask-backend-rest
-npm install
-
-# start Server
-npm start
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ ... dTrHlMw-58rYKKkUu4
 ```
-Nachdem der Server gestartet wurde, ist dieser unter `http://localhost:8080` zu erreichen.
 
+## Verbindungstest
 
-# Datenbank
-Aktuell wird mit Beispieldaten gearbeitet, dafür wird Docker von dem Repository
-[tinytask-backend-mongodb](https://github.com/KSWE-2016-17/tinytask-backend-mongodb) benötigt.
-Wir verweisen auf die Anleitung von `tinytask-backend-mongodb` um die Datenbank, über Docker, einzurichten.
-
-Zusätzlich empfehlen wir die Installationsanleitung von Docker: https://docs.docker.com/engine/installation/
-
-Nachdem die Datenbank eingerichtet ist, müsst ihr eure MongoDB Url in die `config.js` eintragen.
-
+Zum testen versucht den Rest Service unter https://tinytaskrest.herokuapp.com/ anzusprechen, sollte die Verbinung erfolgreich sein erhaltet Ihr den folgenden Json.
 ```javascript
-module.exports = {
-    'mongodb': 'mongodb://[IP-Adresse]/tinytask'
+{
+  "message": "Connected!"
 }
 ```
 
-# Authentifizierung
-Um eine erfolgreiche Authentifizierung zu gewährleisten, tragt Sie Ihre Auth0-Daten, in die `config.js` ein.
-```javascript
-module.exports = {
-    'auth': {
-        'domain': '[...] .eu.auth0.com',
-        'clientID': 'Auth0 Client Id',
-        'clientSecret': 'Auth0 Secret'
-    }
-};
+Bei einem ungültigen Token erhaltet Ihr die folgende Nachricht.
 ```
-
-Damit die Authentifizierung gelingt, müsst Ihr bei jeder Anfrage, an den Rest Server, den `Authorization` Header mit dem entsprechendem Token mitschicken.
-```
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ ... dTrHlMw-58rYKKkUu4
+Invalid Token
 ```

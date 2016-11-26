@@ -1,9 +1,18 @@
 var TinyTaskDB  = require("tinytaskdb"),
-    mapper      = require('./mapper');
+    mapper      = require('./mapper'),
+    ObjectId    = require('mongodb').ObjectID;
 
 exports.findById = function (id, cb) {
+
+    var isValidObjectId = (id.match(/^[0-9a-fA-F]{24}$/));
+    if(!isValidObjectId) return cb(new Error("Invalid ObjectId", 400), null);
+
     TinyTaskDB.Task.findOne({'_id': id}, function (err, task) {
-        cb(err, mapper.convertTaskToJsonResponse(task));
+        if (!err && task) {
+            cb(err, mapper.convertTaskToJsonResponse(task))
+        } else {
+            cb(err, null);
+        }
     });
 };
 
@@ -37,14 +46,8 @@ exports.filterBy = function (filter, cb) {
 
 exports.saveFromJson = function (userid, json, cb) {
 
-    TinyTaskDB.Task.findOne().sort('-_id').exec(function (err, item) {
-
-        if (err) return cb(err, null);
-
-        var id = (err) ? 1 : ++item._id;
-
         var newTask = new TinyTaskDB.Task({
-            _id: id,
+            _id: ObjectId(),
             createdBy: userid,
             assignedTo: null,
             name: json.name,
@@ -54,20 +57,30 @@ exports.saveFromJson = function (userid, json, cb) {
                 latitude: json.position.latitude,
                 longitude: json.position.longitude
             },
-            starts: json.starts
+            starts: json.starts,
+            category: json.category
         });
 
-        newTask.save(function (err, model) {
+        newTask.save(function (err, task) {
             if (err) return cb(err, null);
-            return cb(err, model._id);
+            return cb(err, task._id);
         });
-
-    });
 
 };
 
-exports.deleteById = function (id, cb) {
-    TinyTaskDB.Task.findByIdAndRemove(id, cb);
+exports.deleteById = function (userid, taskid, cb) {
+    this.findById(taskid, function(err, task){
+
+        if(err)
+            return cb(err, null);
+
+        if(task.createdBy === userid) {
+            TinyTaskDB.Task.findByIdAndRemove(taskid, cb);
+        }else{
+            return cb(new Error("You are not the owner!", 400), null)
+        }
+
+    });
 };
 
 exports.updateFromJson = function (taskid, json, cb) {
@@ -99,21 +112,51 @@ exports.findPosition = function (id, cb) {
 
 exports.findApplications = function (id, cb) {
 
-    TinyTaskDB.Task.findOne({'_id': id}, function (err, task) {
+    TinyTaskDB.Application.find({'task':id}, function (err, application) {
+
         if (err) {
             cb(err, null);
         } else {
 
             var applicationMap = {};
 
-            applicationMap["results"] = task.applications.length;
+            applicationMap["results"] = application.length;
             applicationMap["applications"] = [];
-            task.applications.forEach(function (application) {
+            application.forEach(function (application) {
                 applicationMap["applications"].push(mapper.convertApplicationToJsonResponse(application))
             });
 
             cb(err, applicationMap);
         }
+    });
+
+};
+
+exports.saveRatingFromJson = function(json, cb){
+
+    TinyTaskDB.Task.findById(json.task, function (err, task) {
+
+        if(err) return cb(err, null);
+
+        TinyTaskDB.User.findById(json.assignedTo, function(err, user){
+
+            if(err) return cb(err, null);
+
+            var rating = new TinyTaskDB.Rating({
+                assignedTo:     json.assignedTo,
+                task:           json.taskid,
+                isExecutor:     (json.assignedTo === user),
+                value:          json.value,
+                comment:        json.comment
+            });
+
+            rating.save(function (err, rating) {
+                if(err) return cb(err, null);
+                return cb(err, rating)
+            });
+
+        });
+
     });
 
 };

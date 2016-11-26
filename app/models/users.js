@@ -12,26 +12,35 @@ exports.findById = function (id, cb) {
 };
 
 exports.findAll = function (cb) {
-    TinyTaskDB.User.find({}, function (err, tasks) {
-        var taskMap = {};
+    TinyTaskDB.User.find({}, function (err, users) {
+        var userMap = {};
 
-        tasks.forEach(function (task) {
-            taskMap[user._id] = mapper.convertUserToJsonResponse(task);
+        users.forEach(function (user) {
+            userMap[user._id] = mapper.convertUserToJsonResponse(user);
         });
 
-        cb(err, taskMap);
+        cb(err, userMap);
     });
+};
+
+exports.createUser = function(json, cb){
+
+    var newUser = new TinyTaskDB.User({
+        _id:            json._id,
+        email:          json.email,
+        displayName:    json.displayName,
+        picture:        json.picture,
+        address:        json.address
+    });
+
+    newUser.save(function (err) {
+        cb(err)
+    });
+
 };
 
 exports.deleteById = function (id, cb) {
     TinyTaskDB.User.findByIdAndRemove(id, cb);
-};
-
-exports.saveFromJson = function (body, cb) {
-
-    console.log(body);
-    cb(null);
-
 };
 
 exports.saveRatingFromJson = function (id, json, cb) {
@@ -65,7 +74,7 @@ exports.saveRatingFromJson = function (id, json, cb) {
 
 exports.loadRatings = function (id, cb) {
 
-    TinyTaskDB.User.findOne({'_id': id}, function (err, user) {
+    TinyTaskDB.Rating.find({'assignedTo': id}, function(err, ratings){
 
         if(err){
             cb(err, null)
@@ -73,10 +82,10 @@ exports.loadRatings = function (id, cb) {
 
             var ratingMap = {};
 
-            ratingMap["results"] = user.ratings.length;
+            ratingMap["results"] = ratings.length;
             ratingMap["ratings"] = [];
-            user.ratings.forEach(function (rating) {
-                ratingMap["ratings"].push(mapper.convertUserRatingToJsonResponse(rating))
+            ratings.forEach(function (rating) {
+                ratingMap["ratings"].push(mapper.convertRatingToJsonResponse(rating))
             });
 
             cb(err, ratingMap);

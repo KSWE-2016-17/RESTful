@@ -1,5 +1,4 @@
 module.exports = {
-    "apiDomain" : 'http://localhost:8080',
     'mongodb': 'mongodb://192.168.11.130/tinytask',
     'auth': {
         'domain': 'tinytask.eu.auth0.com',

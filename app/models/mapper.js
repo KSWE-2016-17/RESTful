@@ -1,25 +1,21 @@
-var config = require("../config.js");
+var apiTasks = "/tasks/",
+    apiUsers = "/users/";
 
 exports.convertUserToJsonResponse = function (user) {
-
-    var api = config.apiDomain + "/" + user._id;
-
     return {
         id:          user._id,
         displayName: user.displayName,
         email:       user.email,
         picture:     user.picture,
         address:     user.address,
-        ratings:     api + "/ratings"
+        ratings:     apiUsers + user._id + "/ratings"
     }
 };
 
-exports.convertUserRatingToJsonResponse = function (rating) {
-
-    var api = config.apiDomain + "/tasks/";
-
+exports.convertRatingToJsonResponse = function (rating) {
     return {
-        task:       api + rating.task,
+        assignedTo: apiUsers + rating.assignedTo,
+        task:       apiTasks + rating.task,
         isExecutor: rating.isExecutor,
         value:      rating.value,
         comment:    rating.comment
@@ -27,29 +23,23 @@ exports.convertUserRatingToJsonResponse = function (rating) {
 };
 
 exports.convertTaskToJsonResponse = function(task){
-
-    var api = config.apiDomain + "/tasks/" + task._id;
-
     return {
         _id:            task._id,
-        createdBy:      task.createdBy,
-        assignedTo:     task.assignedTo,
+        createdBy:      apiUsers + task.createdBy,
+        assignedTo:     apiUsers + task.assignedTo,
         name:           task.name,
         description:    task.description,
         payment:        task.payment,
-        applications:   api + "/applications",
+        applications:   apiTasks + task._id + "/applications",
         starts:         task.starts,
-        position:       api + "/position"
+        position:       apiTasks + task._id + "/position",
+        category:       task.category
     }
 };
 
 exports.convertApplicationToJsonResponse = function(application){
-
-    var api = config.apiDomain + "/users/";
-
     return {
-        user:   api + application.user,
-        comment: application.comment
+        user:       apiUsers + application.user,
+        comment:    application.comment
     };
-
 };
