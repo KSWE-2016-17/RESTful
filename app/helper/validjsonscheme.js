@@ -47,7 +47,7 @@ module.exports = {
             "latitude": 53.1234567543,
             "longitude": 53.1234567543
         },
-        "starts": "2016-12-01T15:13:21.000Z"
+        "starts": "2016-12-01T15:13:21.000Z",
         "category": "Süßigkeiten"
      }
      */
@@ -109,7 +109,7 @@ module.exports = {
             "latitude": 53.1234567543,
             "longitude": 53.1234567543
         },
-        "starts": "2016-12-01T15:13:21.000Z"
+        "starts": "2016-12-01T15:13:21.000Z",
         "category": "Süßigkeiten"
      }
      */
