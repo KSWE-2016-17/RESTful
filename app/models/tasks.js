@@ -21,6 +21,7 @@ exports.findAll = function (cb) {
         var taskMap = {};
 
         tasks.forEach(function (task) {
+            console.log(task);
             console.log(task._id);
             taskMap[task._id.str] = mapper.convertTaskToJsonResponse(task);
         });
