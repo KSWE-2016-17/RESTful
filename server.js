@@ -22,10 +22,7 @@ app.use(jwt({
     audience: config.auth.clientID,
     issuer: 'https://' + config.auth.domain + '/',
     secret: new Buffer(config.auth.clientSecret, 'base64')
-}).unless({
-    path: [{ url: '/tasks', methods: ['GET']}]
 }));
-app.use(require("./app/middlewares/authusercheck"));
 
 // routes
 app.use('/', routes);
