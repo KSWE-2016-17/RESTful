@@ -7,7 +7,7 @@ exports.findById = function (id, cb) {
     var isValidObjectId = (id.match(/^[0-9a-fA-F]{24}$/));
     if(!isValidObjectId) return cb(new Error("Invalid ObjectId", 400), null);
 
-    TinyTaskDB.Task.findOne({'_id': id}, function (err, task) {
+    TinyTaskDB.Task.findOne({'_id': ObjectId(id)}, function (err, task) {
         if (!err && task) {
             cb(err, mapper.convertTaskToJsonResponse(task))
         } else {
@@ -21,7 +21,7 @@ exports.findAll = function (cb) {
         var taskMap = {};
 
         tasks.forEach(function (task) {
-            taskMap[task._id] = mapper.convertTaskToJsonResponse(task);
+            taskMap[task._id.toString()] = mapper.convertTaskToJsonResponse(task);
         });
 
         cb(err, taskMap)
@@ -36,7 +36,7 @@ exports.filterBy = function (filter, cb) {
         var taskMap = {};
 
         tasks.forEach(function (task) {
-            taskMap[task._id] = mapper.convertTaskToJsonResponse(task);
+            taskMap[task._id.toString()] = mapper.convertTaskToJsonResponse(task);
         });
 
         cb(err, taskMap)
@@ -47,7 +47,6 @@ exports.filterBy = function (filter, cb) {
 exports.saveFromJson = function (userid, json, cb) {
 
         var newTask = new TinyTaskDB.Task({
-            _id: ObjectId(),
             createdBy: userid,
             assignedTo: null,
             name: json.name,
@@ -75,7 +74,7 @@ exports.deleteById = function (userid, taskid, cb) {
             return cb(err, null);
 
         if(task.createdBy === userid) {
-            TinyTaskDB.Task.findByIdAndRemove(taskid, cb);
+            TinyTaskDB.Task.findByIdAndRemove(ObjectId(taskid), cb);
         }else{
             return cb(new Error("You are not the owner!", 400), null)
         }
@@ -86,7 +85,7 @@ exports.deleteById = function (userid, taskid, cb) {
 exports.updateFromJson = function (taskid, json, cb) {
 
     TinyTaskDB.Task.findOneAndUpdate(
-        {'_id': taskid},
+        {'_id': ObjectId(taskid)},
         {$set: json},
         function (err, task) {
             if (err) return cb(err, null);
@@ -97,7 +96,7 @@ exports.updateFromJson = function (taskid, json, cb) {
 
 exports.findPosition = function (id, cb) {
 
-    TinyTaskDB.Task.findOne({'_id': id}, function (err, task) {
+    TinyTaskDB.Task.findOne({'_id': ObjectId(id)}, function (err, task) {
         if (err) {
             cb(err, null);
         } else {
@@ -134,7 +133,7 @@ exports.findApplications = function (id, cb) {
 
 exports.saveRatingFromJson = function(json, cb){
 
-    TinyTaskDB.Task.findById(json.task, function (err, task) {
+    TinyTaskDB.Task.findById(ObjectId(json.task), function (err, task) {
 
         if(err) return cb(err, null);
 
@@ -152,7 +151,7 @@ exports.saveRatingFromJson = function(json, cb){
 
             rating.save(function (err, rating) {
                 if(err) return cb(err, null);
-                return cb(err, rating)
+                return cb(err, rating._id)
             });
 
         });
