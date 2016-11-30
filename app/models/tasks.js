@@ -21,7 +21,8 @@ exports.findAll = function (cb) {
         var taskMap = {};
 
         tasks.forEach(function (task) {
-            taskMap[task._id] = mapper.convertTaskToJsonResponse(task);
+            console.log(task._id);
+            taskMap[task._id.str] = mapper.convertTaskToJsonResponse(task);
         });
 
         cb(err, taskMap)
@@ -36,7 +37,8 @@ exports.filterBy = function (filter, cb) {
         var taskMap = {};
 
         tasks.forEach(function (task) {
-            taskMap[task._id] = mapper.convertTaskToJsonResponse(task);
+            console.log(task._id);
+            taskMap[task._id.str] = mapper.convertTaskToJsonResponse(task);
         });
 
         cb(err, taskMap)
