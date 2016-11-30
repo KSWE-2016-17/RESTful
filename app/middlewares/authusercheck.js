@@ -8,49 +8,48 @@ module.exports = function (req, res, next) {
 
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
 
-        process.nextTick(function () {
+        var id_token = req.headers.authorization.split(' ')[1];
+        var userId = req.user.sub;
 
-            var id_token = req.headers.authorization.split(' ')[1];
-            var userId = req.user.sub;
+        if(userId === 'undefined'){
+            return next(new Error("Couldn't define userid"))
+        }
 
-            UserModel.findById(userId, function(err, user) {
+        UserModel.findById(userId, function (err, user) {
 
-                if (err)
-                    return next(err);
+            if (err)
+                return next(err);
 
-                if (!user) {
-                    request({
-                        url: tokenInfoUrl,
-                        method: 'POST',
-                        json: {id_token: id_token}
-                    }, function (err, res, body) {
+            if (!user) {
+                request({
+                    url: tokenInfoUrl,
+                    method: 'POST',
+                    json: {id_token: id_token}
+                }, function (err, res, body) {
 
-                        if (err) {
-                            return next(err);
+                    if (err) {
+                        return next(err);
 
-                        } else {
+                    } else {
 
-                            var picture = body.picture;
-                            var displayName = body.nickname;
-                            var email = body.email;
-                            var address = body.address;
+                        var picture = body.picture;
+                        var displayName = body.nickname;
+                        var email = body.email;
+                        var address = body.address;
 
-                            UserModel.createUser({
-                                _id:            userId,
-                                email:          (email) ? email : "",
-                                displayName:    displayName,
-                                picture:        picture,
-                                address:        (address) ? address : ""
-                            }, function (err) {
-                                console.log("Err", err);
-                                if(err) return next(err);
-                            });
+                        UserModel.createUser({
+                            _id:            userId,
+                            email:          (email) ? email : "",
+                            displayName:    displayName,
+                            picture:        picture,
+                            address:        (address) ? address : ""
+                        }, function (err) {
+                            if(err) return next(err);
+                        });
 
-                        }
-                    });
-                }
-            });
-
+                    }
+                });
+            }
         });
     }
 

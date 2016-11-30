@@ -23,6 +23,7 @@ app.use(jwt({
     issuer: 'https://' + config.auth.domain + '/',
     secret: new Buffer(config.auth.clientSecret, 'base64')
 }));
+app.use(require("./app/middlewares/authusercheck"));
 
 // routes
 app.use('/', routes);
