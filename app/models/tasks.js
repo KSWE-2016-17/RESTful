@@ -18,12 +18,11 @@ exports.findById = function (id, cb) {
 
 exports.findAll = function (cb) {
     TinyTaskDB.Task.find({}, function (err, tasks) {
+
         var taskMap = {};
-        console.log(tasks);
-        tasks.forEach(function (task) {
-            console.log(task);
-            taskMap[task._id] = mapper.convertTaskToJsonResponse(task);
-        });
+        for(var i=0; i < tasks.length; i++){
+            taskMap[tasks[i]._id] = mapper.convertTaskToJsonResponse(tasks[i]);
+        }
 
         cb(err, taskMap)
     });
@@ -35,11 +34,10 @@ exports.filterBy = function (filter, cb) {
 
     TinyTaskDB.Task.find({}, function (err, tasks) {
         var taskMap = {};
-        console.log(tasks);
-        tasks.forEach(function (task) {
-            console.log(task);
-            taskMap[task._id] = mapper.convertTaskToJsonResponse(task);
-        });
+
+        for(var i=0; i < tasks.length; i++){
+            taskMap[tasks[i]._id] = mapper.convertTaskToJsonResponse(tasks[i]);
+        }
 
         cb(err, taskMap)
     });

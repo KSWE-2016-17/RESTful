@@ -23,6 +23,7 @@ exports.convertRatingToJsonResponse = function (rating) {
 };
 
 exports.convertTaskToJsonResponse = function(task){
+    console.log("Debug: " + task);
     return {
         _id:            task._id,
         createdBy:      apiUsers + task.createdBy,
