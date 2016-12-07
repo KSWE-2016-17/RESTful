@@ -40,7 +40,7 @@ exports.filterBy = function (filter, cb) {
 
             console.log("_id" + tasks[i]._id);
             console.log("id" + tasks[i].id);
-            console.log("String _id" + tasks[i]._id.toString());
+            console.log("String _id" + tasks[i]._id);
             console.log("String id" + tasks[i].id.toString());
 
             console.log("_______");
