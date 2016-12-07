@@ -37,7 +37,7 @@ exports.filterBy = function (filter, cb) {
         var taskMap = {};
 
         for(var i=0; i < tasks.length; i++){
-            console.log(JSON.parse(tasks[i]));
+            console.log(JSON.stringify(tasks[i]));
             console.log("Id: " +  tasks[i]._id);
             taskMap[tasks[i]._id] = mapper.convertTaskToJsonResponse(tasks[i]);
         }
