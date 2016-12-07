@@ -1,4 +1,5 @@
 var express     = require('express'),
+    cors        = require('cors'),
     app         = express(),
     config      = require('./app/config.js');
 
@@ -9,6 +10,9 @@ var port        = process.env.PORT || 8080,
     bodyParser  = require('body-parser'),
     jwt         = require('express-jwt'),
     routes      = require('./app/routes');
+
+// enable all cors requests
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -35,7 +39,7 @@ app.use(require("./app/middlewares/errors"));
 mongoose.Promise = global.Promise;
 mongoose.connect(mongodb, function (err) {
     if (err) {
-        console.log('Unable to connect to Mongo.')
+        console.log('Unable to connect to Mongo.');
         process.exit(1)
     } else {
         app.listen(port);
