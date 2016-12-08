@@ -38,6 +38,8 @@ exports.filterBy = function (filter, cb) {
 
         for(var i=0; i < tasks.length; i++){
 
+
+
             console.log("_id " + tasks[i]._id);
             console.log("id " + tasks[i].id);
             console.log("_id$oid " + tasks[i]._id.$oid);
