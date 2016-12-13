@@ -1,15 +1,18 @@
-var express     = require('express'),
-    cors        = require('cors'),
-    app         = express(),
-    config      = require('./app/config.js');
+var express = require('express'),
+    cors = require('cors'),
+    app = express(),
+    http = require('http').Server(app),
+    config = require('./app/config.js');
 
-var port        = process.env.PORT || 8080,
-    mongodb     = process.env.MONGO_DB || config.mongodb,
-    mongoose    = require('mongoose'),
-    logger      = require('morgan'),
-    bodyParser  = require('body-parser'),
-    jwt         = require('express-jwt'),
-    routes      = require('./app/routes');
+var port = process.env.PORT || 8080,
+    chatPort = 3000,
+    mongodb = process.env.MONGO_DB || config.mongodb,
+    mongoose = require('mongoose'),
+    logger = require('morgan'),
+    bodyParser = require('body-parser'),
+    jwt = require('express-jwt'),
+    routes = require('./app/routes'),
+    io = require('socket.io')(http);
 
 // enable all cors requests
 app.use(cors());
@@ -35,6 +38,9 @@ app.use('/', routes);
 // error handling
 app.use(require("./app/middlewares/errors"));
 
+// chat
+require("./app/chat.js")(io);
+
 // db connect and create server
 mongoose.Promise = global.Promise;
 mongoose.connect(mongodb, function (err) {
@@ -42,7 +48,13 @@ mongoose.connect(mongodb, function (err) {
         console.log('Unable to connect to Mongo.');
         process.exit(1)
     } else {
+
         app.listen(port);
         console.log('listen to port ' + port);
+
+        http.listen(chatPort, function () {
+            console.log('listening chat on *:' + chatPort);
+        });
+
     }
 });
