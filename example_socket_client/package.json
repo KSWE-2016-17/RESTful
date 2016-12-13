@@ -1,0 +1,11 @@
+{
+  "name": "ExampleSocketClient",
+  "version": "0.0.1",
+  "main": "index.js",
+  "start": "node index.js",
+  "description": "ExampleSocketClient",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.5.1"
+  }
+}
