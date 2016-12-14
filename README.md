@@ -1,12 +1,5 @@
 # TinyTask Rest
-
-***AKTUELL WIRD DIE DATENSTRUKTUR GEÄNDERT, ES KANN ZU FEHLERN KOMMEN !!!***
-
 Der Rest Service ist unter https://tinytaskrest.herokuapp.com/ erreichbar.
-
-# Chat
-Wir haben nun den Chat eingefügt, dieser sollte unter https://tinytaskrest.herokuapp.com:3000/ erreichbar sein.
-Wir haben einen Beispiel Client eingefügt, dieser ist unter ```example_socket_chat``` zu finden.
 
 # Dokumentation
 Die Rest Dokumentation ist unter [https://kswe-2016-17.github.io/tinytask-backend-rest/](https://kswe-2016-17.github.io/tinytask-backend-rest/) zu finden.
@@ -43,3 +36,7 @@ Bei einem ungültigen Token erhaltet Ihr die folgende Nachricht.
 ```
 Invalid Token
 ```
+
+# Chat
+Wir haben nun den Chat eingefügt, dieser sollte unter https://tinytaskrest.herokuapp.com:3000/ erreichbar sein.
+Wir haben einen Beispiel Client eingefügt, dieser ist unter ```example_socket_chat``` zu finden.
