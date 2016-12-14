@@ -26,13 +26,13 @@ exports.convertTaskToJsonResponse = function(task){
     return {
         _id:            task._id,
         createdBy:      apiUsers + task.createdBy,
-        assignedTo:     apiUsers + task.assignedTo,
+        assignedTo:     (task.assignedTo == null) ? null : apiUsers + task.assignedTo,
         name:           task.name,
         description:    task.description,
         payment:        task.payment,
         applications:   apiTasks + task._id + "/applications",
         starts:         task.starts,
-        position:       apiTasks + task._id + "/position",
+        position:       {"lat": task.position.latitude, "lng": task.position.longitude},
         category:       task.category
     }
 };
